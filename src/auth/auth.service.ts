@@ -19,4 +19,9 @@ export class AuthService {
         const newUser = this.userRepository.create(details)
         return await this.userRepository.save(newUser)
     }
+
+    async findUserById(id: number) {
+        const user = await this.userRepository.findOneBy({ id })
+        return user ? user : null;
+    }
 }

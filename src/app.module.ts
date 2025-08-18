@@ -5,6 +5,7 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './typeorm/entities/user.entity';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [AuthModule, ConfigModule.forRoot({
@@ -19,7 +20,8 @@ import { User } from './typeorm/entities/user.entity';
       database: 'google_oauth_db',
       entities: [User],
       synchronize: true,
-    })],
+    }),
+    PassportModule.register({ session: true })],
   controllers: [AppController],
   providers: [AppService],
 })
