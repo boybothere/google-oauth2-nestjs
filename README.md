@@ -1,98 +1,99 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Google OAuth 2.0 with NestJS
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This project provides a boilerplate backend for implementing Google authentication with NestJS and Passport.js. It's designed to be a starting point for building a robust and secure authentication system, handling the complete OAuth 2.0 flow with a server-side session.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+-----
 
-## Description
+## Project Overview
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This backend is built on the NestJS framework and uses Passport.js for authentication. It demonstrates a complete login flow with Google, which includes:
 
-## Project setup
+  * **OAuth 2.0 Authorization Code Flow:** A secure, multi-step process for authenticating users.
+  * **User Validation:** Verifying user profiles and managing their data in a database using **TypeORM**.
+  * **Session Management:** Maintaining a persistent, authenticated user session.
+
+-----
+
+## Features
+
+  * **Google OAuth 2.0 Integration:** Secure and simple sign-in via Google.
+  * **Passport.js Guards & Strategies:** Modular and reusable authentication logic.
+  * **TypeORM:** Object-Relational Mapping (ORM) for efficient database operations.
+  * **Sessions:** Stateful authentication to maintain user sessions across requests.
+
+-----
+
+## Getting Started
+
+### Prerequisites
+
+To run this project, you will need:
+
+  * **Node.js** (v16.x or higher)
+  * **npm** or **yarn**
+  * **MySQL** database
+  * A configured Google Cloud Project with OAuth credentials.
+
+### Installation
+
+1.  **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/boybothere/google-oauth2-nestjs
+    cd google-oauth2-nestjs
+    ```
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+    or
+
+    ```bash
+    yarn install
+    ```
+
+3.  **Configuration**
+    Create a `.env` file in the project's root directory and add your credentials.
+
+    ```
+    # Google OAuth Credentials
+    CLIENT_ID=<Your_Google_Client_ID>
+    CLIENT_SECRET=<Your_Google_Client_Secret>
+    CALLBACK_URL=<Your_Google_Redirect_URL>
+
+    # Session secret
+    SESSION_SECRET=<Your_session_secret_key>
+
+    # Database Configuration
+    DATABASE_HOST=<Your_DB_Host>
+    DATABASE_PORT=<Your_DB_Port>
+    DATABASE_USERNAME=<Your_DB_Username>
+    DATABASE_PASSWORD=<Your_DB_Password>
+    DATABASE_NAME=<Your_DB_Name>
+    ```
+
+### Running the App
 
 ```bash
-$ npm install
+npm run start:dev
 ```
 
-## Compile and run the project
+The application will run on the port specified in your `.env` file or the default port (3000).
 
-```bash
-# development
-$ npm run start
+-----
 
-# watch mode
-$ npm run start:dev
+## API Endpoints
 
-# production mode
-$ npm run start:prod
-```
+This project exposes the following authentication endpoints:
 
-## Run tests
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+  * **`GET /auth/google/login`**
+      * Initiates the Google OAuth 2.0 login flow.
+  * **`GET /auth/google/redirect`**
+      * The callback URL that handles the authenticated user and establishes a session.
+  * **`GET /auth/status`**
+      * Checks the authentication status of the current user. Returns the user object if authenticated.
+  * **`GET /auth/logout`**
+      * Destroys the user's session and logs them out.
